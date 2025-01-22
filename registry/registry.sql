@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS registry
+(
+    id SERIAL PRIMARY KEY ,
+    name TEXT NOT NULL,
+    uri  TEXT NOT NULL
+)
