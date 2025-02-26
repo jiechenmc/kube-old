@@ -10,11 +10,19 @@ export const options = {
 const baseUrl = "http://localhost";
 
 export function setup() {
-  // EMPTY
+  const vuJar = http.cookieJar();
+  const cookiesForURL = vuJar.cookiesForURL(baseUrl);
+  return cookiesForURL;
 }
 
 export default function (cookiesForURL) {
-  http.get(`${baseUrl}/`);
+  const params = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cookies: cookiesForURL,
+  };
+  http.get(`${baseUrl}/`, params);
 }
 
 export function teardown(data) {
