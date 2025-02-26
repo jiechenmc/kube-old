@@ -1,7 +1,7 @@
 ############################
 # STEP 1 build executable binary
 ############################
-FROM golang:1.23-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 # Set destination for COPY
 WORKDIR /app
@@ -18,7 +18,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o kube
 ############################
 # STEP 2 build a small image
 ############################
-FROM alpine:latest
+FROM alpine:3.21.3
 
 COPY --from=builder /app/kube /app/kube
 
