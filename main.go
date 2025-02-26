@@ -10,7 +10,8 @@ import (
 func main() {
 
 	r := gin.Default()
-	r.LoadHTMLGlob("templates/*")
+	r.Static("/static", "./static")
+	r.LoadHTMLGlob("templates/*.html")
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"Connected": true})

@@ -1,4 +1,5 @@
 {{ define "base" }}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,6 +10,7 @@
       integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
       crossorigin="anonymous"
     ></script>
+    <link href="/static/output.css" rel="stylesheet">
   </head>
   <body>
      {{ block "content" . }} {{ end }}
