@@ -10,7 +10,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY *.go ./
+COPY ./src/*.go ./
 
 # Build the binary.
 RUN CGO_ENABLED=0 GOOS=linux go build -o kube
@@ -23,8 +23,8 @@ FROM alpine:3.21.3
 COPY --from=builder /app/kube /app/kube
 
 # This can be removed later when I bundle the templates with the entire app
-COPY ./templates ./templates
-COPY ./static ./static
+COPY ./src/templates ./templates
+COPY ./src/static ./static
 
 ENV PORT=8080
 ENV GIN_MODE=release
