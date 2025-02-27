@@ -8,3 +8,6 @@
 
 - Gin
 
+# Verdict
+
+Not very productive due to the lack of hot reloading and the templating experience is not that great.

@@ -26,12 +26,13 @@ func main() {
 
 	r.GET("/run", func(c *gin.Context) {
 
-		out, err := exec.Command("ls /app").Output()
+		out, err := exec.Command("ls").Output()
 
 		if err != nil {
 			c.JSON(http.StatusOK, gin.H{"stderr": string(out)})
 		} else {
-			c.JSON(http.StatusOK, gin.H{"stdout": string(out)})
+			res := []string{"foo", "bar"}
+			c.HTML(http.StatusOK, "queue.html", res)
 		}
 
 	})
