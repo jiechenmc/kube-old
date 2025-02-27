@@ -1,7 +1,7 @@
 ############################
 # STEP 1 build executable binary
 ############################
-FROM golang:1.23-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 # Set destination for COPY
 WORKDIR /app
@@ -10,7 +10,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 
-COPY *.go ./
+COPY ./src/*.go ./
 
 # Build the binary.
 RUN CGO_ENABLED=0 GOOS=linux go build -o kube
@@ -18,9 +18,13 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o kube
 ############################
 # STEP 2 build a small image
 ############################
-FROM alpine:latest
+FROM alpine:3.21.3
 
 COPY --from=builder /app/kube /app/kube
+
+# This can be removed later when I bundle the templates with the entire app
+COPY ./src/templates ./templates
+COPY ./src/static ./static
 
 ENV PORT=8080
 ENV GIN_MODE=release

@@ -1,0 +1,13 @@
+{{ template "base" .}}
+
+{{ define "content" }}
+
+
+<div id="parent-div">
+
+</div>
+<button hx-get="/run" hx-trigger="click" hx-target="#parent-div" hx-swap="outerHTML" hx-indicator="#spinner"
+  type="button" class="btn">Run</button>
+<span id="spinner" class="loading loading-ring loading-xl hidden [&.htmx-request]:block"></span>
+
+{{ end }}

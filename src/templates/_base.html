@@ -1,0 +1,70 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kube</title>
+  <script src="https://unpkg.com/htmx.org@2.0.4"
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+    crossorigin="anonymous"></script>
+  <link href="/static/output.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="flex flex-col">
+    <div class="navbar bg-base-300 shadow-sm">
+      <div class="flex-1">
+        <a class="btn btn-ghost text-xl">{{ .title }}</a>
+      </div>
+      <div class="flex gap-2">
+        <div class="flex">
+          <label class="input validator">
+            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </g>
+            </svg>
+            <input type="input" required placeholder="IPv4 Address" value="{{ .ipv4 }}"
+              pattern="^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$" minlength="6" maxlength="15" title="IPv4 Address" />
+          </label>
+          <p class="validator-hint absolute bottom-10">
+            IPv4 addresses must be 6 to 15 characters
+            <br />containing only numbers separated by four .
+          </p>
+        </div>
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img alt="Tailwind CSS Navbar component"
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            </div>
+          </div>
+          <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            <li>
+              <a class="justify-between">
+                Profile
+                <span class="badge">New</span>
+              </a>
+            </li>
+            <li><a>Settings</a></li>
+            <li><a>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-base-100 flex  h-[calc(100vh-4rem)]">
+      <div>
+        {{ block "sidebar" . }} {{ end }}
+      </div>
+      <div>
+        {{ block "content" . }} {{ end }}
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+{{ end }}
