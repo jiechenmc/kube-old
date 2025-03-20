@@ -14,12 +14,6 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"Connected": true})
 	})
 
-	r.GET("/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title": "Kube",
-			"ipv4":  "1.1.1.1",
-		})
-	})
 
 	r.GET("/run", func(c *gin.Context) {
 

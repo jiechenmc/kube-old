@@ -1,20 +1,31 @@
 services:
-  app:
-    restart: always
+  frontend:
     build:
-      context: ./
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    restart: always
+    volumes:
+      - ./frontend/app:/frontend/app
+      - ./frontend/public:/frontend/public
     env_file:
       - .env
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    env_file:
+      - .env
+    restart: always
     develop:
       watch:
         - action: rebuild
-          path: ./src
+          path: ./backend
 
   db:
     image: postgres
     restart: always
     shm_size: 128mb
-
     environment:
       POSTGRES_PASSWORD: example
 
