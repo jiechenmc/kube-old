@@ -18,30 +18,34 @@ jobs:
         with:
           go-version: "1.24.x"
       - name: Install dependencies
-        run: go mod download
+        run: |
+          cd backend
+          go mod download
       - name: Test with the Go CLI
-        run: go test ./...
+        run: |
+          cd backend
+          go test ./...
 
-  build-and-push-image:
-    runs-on: ubuntu-latest
-    needs:
-      - run-tests
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  # build-and-push-image:
+  #   runs-on: ubuntu-latest
+  #   needs:
+  #     - run-tests
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@v3
-        with:
-          registry: https://ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Log in to the Container registry
+  #       uses: docker/login-action@v3
+  #       with:
+  #         registry: https://ghcr.io
+  #         username: ${{ github.actor }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: |
-            ghcr.io/jiechenmc/kube:latest
-            ghcr.io/jiechenmc/kube:${{ github.sha }}
+  #     - name: Build and push Docker image
+  #       uses: docker/build-push-action@v6
+  #       with:
+  #         context: .
+  #         push: true
+  #         tags: |
+  #           ghcr.io/jiechenmc/kube:latest
+  #           ghcr.io/jiechenmc/kube:${{ github.sha }}
