@@ -1,8 +1,6 @@
 # Front of the House
 
-- Tailwind CSS v4 w/ DaisyUI
-- HTMX w/ Go Templates
-
+- Next.js w/ Tailwind
 
 # Back of the House
 

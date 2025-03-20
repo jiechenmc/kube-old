@@ -3,15 +3,12 @@ package main
 import (
 	"net/http"
 	"os/exec"
-
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
 	r := gin.Default()
-	r.Static("/static", "./static")
-	r.LoadHTMLGlob("templates/*.html")
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"Connected": true})

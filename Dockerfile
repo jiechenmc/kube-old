@@ -22,10 +22,6 @@ FROM alpine:3.21.3
 
 COPY --from=builder /app/kube /app/kube
 
-# This can be removed later when I bundle the templates with the entire app
-COPY ./src/templates ./templates
-COPY ./src/static ./static
-
 ENV PORT=8080
 ENV GIN_MODE=release
 EXPOSE 8080
