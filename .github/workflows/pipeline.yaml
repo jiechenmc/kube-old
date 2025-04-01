@@ -19,11 +19,9 @@ jobs:
           go-version: "1.24.x"
       - name: Install dependencies
         run: |
-          cd backend
           go mod download
       - name: Test with the Go CLI
         run: |
-          cd backend
           go test ./...
 
   # build-and-push-image:
