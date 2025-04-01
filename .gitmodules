@@ -1,3 +1,0 @@
-[submodule "kubestack"]
-	path = kubestack
-	url = https://github.com/jiechenmc/kubestack.git
