@@ -1,4 +1,4 @@
-package helmcontroller
+package queuecontroller
 
 type Registry struct {
 	Id   int
