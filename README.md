@@ -1,7 +1,7 @@
-# Front of the House
+# Kube
 
-- Next.js w/ Tailwind
+Leaning towards a cli to automate helm chart deployments
 
-# Back of the House
+# KubeStack
 
-- Gin
+- The k3s infrastructure I have setup in my homelab.
